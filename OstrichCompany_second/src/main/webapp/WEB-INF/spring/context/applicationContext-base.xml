@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+<bean id="codeDAOImpl" class="com.project.OstrichCompany.base.dao.CodeDAOImpl">
+<property name="dataSourceTransactionManager" ref="dataSourceTransactionManager" />
+</bean>
+
+<bean id="codeDetailDAOImpl" class="com.project.OstrichCompany.base.dao.CodeDetailDAOImpl">
+<property name="dataSourceTransactionManager" ref="dataSourceTransactionManager" />
+</bean>
+
+<bean id="addressDAOImpl" class="com.project.OstrichCompany.base.dao.AddressDAOImpl">
+<property name="dataSourceTransactionManager" ref="dataSourceTransactionManager" />
+</bean>
+
+<bean id="reportDAOImpl" class="com.project.OstrichCompany.base.dao.ReportDAOImpl">
+<property name="dataSourceTransactionManager" ref="dataSourceTransactionManager" />
+</bean>
+
+<bean id="codeApplicationServiceImpl" class="com.project.OstrichCompany.base.applicationService.CodeApplicationServiceImpl">
+<property name="codeDAO" ref="codeDAOImpl" />
+<property name="codeDetailDAO" ref="codeDetailDAOImpl" />
+</bean>
+
+<bean id="addressApplicationServiceImpl" class="com.project.OstrichCompany.base.applicationService.AddressApplicationServiceImpl">
+<property name="addressDAO" ref="addressDAOImpl" />
+</bean>
+
+<bean id="reportApplicationServiceImpl" class="com.project.OstrichCompany.base.applicationService.ReportApplicationServiceImpl">
+<property name="reportDAO" ref="reportDAOImpl" />
+</bean>
+
+<bean id="baseServiceFacadeImpl" class="com.project.OstrichCompany.base.serviceFacade.BaseServiceFacadeImpl">
+<property name="codeAS" ref="codeApplicationServiceImpl" />
+<property name="addressAS" ref="addressApplicationServiceImpl" />
+<property name="reportAS" ref="reportApplicationServiceImpl" />
+</bean>
+
+</beans>
